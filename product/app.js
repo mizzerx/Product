@@ -1,6 +1,7 @@
 const express = require('express');
 const engines = require('consolidate');
 const app = express();
+const PORT = process.env.PORT || "8080";
 
 var bodyParser = require("body-parser");
 const { parse } = require('path');
@@ -102,3 +103,5 @@ app.post('/doupdate', async (req, res) => {
     await dbo.collection("products").updateOne(condition, change);
     res.redirect('/allProduct');
 })
+
+app.listen(PORT, () => console.log("App listened port: " + PORT));
